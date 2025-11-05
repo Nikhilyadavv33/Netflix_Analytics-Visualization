@@ -1,0 +1,80 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #141414;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Headings */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #E50914; /* Netflix red */
+}
+
+h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Form styling */
+form {
+    margin: 20px 0;
+}
+
+select, button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+
+/* Dropdowns */
+select {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Buttons */
+button {
+    background-color: #E50914;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #b20710;
+}
+
+/* Movie list */
+ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+li {
+    background-color: #222;
+    margin: 5px auto;
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+/* Charts */
+#lang_chart, #cat_chart {
+    margin: 20px auto;
+    background-color: #222;
+    padding: 15px;
+    border-radius: 10px;
+}

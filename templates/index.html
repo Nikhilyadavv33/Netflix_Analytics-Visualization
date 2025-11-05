@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Netflix Analytics & Visualization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Netflix Analytics & Visualization</h1>
+    
+    <form method="POST">
+        <input type="hidden" name="section" value="explore">
+        <label>Category:</label>
+        <select name="category">
+            {% for cat in categories %}
+            <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+        </select>
+        <label>Language:</label>
+        <select name="language">
+            {% for lang in languages %}
+            <option value="{{ lang }}">{{ lang }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Explore Movies</button>
+    </form>
+    
+    {% if top_movies %}
+    <h2>Top 5 Movies</h2>
+    <ul>
+        {% for movie in top_movies %}
+        <li>{{ movie['Title'] }} ({{ movie['Release_Year'] }})</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h2>My Insights (Live)</h2>
+    
+    {% if lang_counts %}
+    <div id="lang_chart" style="width:600px;height:400px;margin:auto;"></div>
+    <div id="cat_chart" style="width:600px;height:400px;margin:auto;"></div>
+    
+    <script>
+        var lang_data = [{
+            x: {{ lang_counts.keys()|list|tojson }},
+            y: {{ lang_counts.values()|list|tojson }},
+            type: 'bar',
+            marker: {color: '#E50914'}
+        }];
+        Plotly.newPlot('lang_chart', lang_data, {title: 'Most Watched Languages'});
+
+        var cat_data = [{
+            x: {{ cat_counts.keys()|list|tojson }},
+            y: {{ cat_counts.values()|list|tojson }},
+            type: 'bar',
+            marker: {color: '#B81D24'}
+        }];
+        Plotly.newPlot('cat_chart', cat_data, {title: 'Most Watched Categories'});
+    </script>
+    {% else %}
+    <p>No activity yet. Explore movies to see insights!</p>
+    {% endif %}
+</body>
+</html>
